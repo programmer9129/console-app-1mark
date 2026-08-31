@@ -15,6 +15,10 @@ bool basher(string a)
 		return false;
 	}
 }
+int commander_main(string f)
+{
+
+}
 int main()
 {
 	while (true)
@@ -29,5 +33,9 @@ int main()
 		else {
 			std::cout << "user access denied " << std::endl;
 		}
+
+
+
+
 	}
 }
