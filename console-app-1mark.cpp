@@ -17,11 +17,17 @@ bool basher(string a)
 }
 int main()
 {
-	std::string line;
-	std::getline(std::cin, line);
-	if (basher(line) == true)
+	while (true)
 	{
-		std::string command = line.substr(9);
-		std::cout << "Command: " << command << std::endl;
+		std::string line;
+		std::getline(std::cin, line);
+		if (basher(line) == true)
+		{
+			std::string command = line.substr(9);
+			std::cout << "Command: " << command << std::endl;
+		}
+		else {
+			std::cout << "user access denied " << std::endl;
+		}
 	}
 }
