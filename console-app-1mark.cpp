@@ -17,10 +17,32 @@ bool basher(string a)
 }
 int commander_main(string f)
 {
-
+	// link commands with functions 
+	if (f == "help")
+	{
+		std::cout << "hello this is valcon your flexible and usable console app" << std::endl;
+		std::cout << "you can use the following codes to start vibin with valcon" << std::endl;
+		std::cout << "'help' - show this msg" << std::endl;
+		std::cout << "'exit' - exit the console" << std::endl;
+}
 }
 int main()
 {
+	std::cout << "                                         " << std::endl;
+	std::cout << "                                         " << std::endl;
+	std::cout << "                                         " << std::endl;
+	std::cout << "                                         " << std::endl;
+	std::cout << "                   try to vibe USER !              " << std::endl;
+	std::cout << " THIS IS VALCON HERE ,YOUR PERSONAL NATURAL CONSOLE" << std::endl;
+	std::cout << R"(
+                                                                       ___
+		              \\\      ///  ///\\\      |||         ///   \\\     ///|||\\\    |||\\\   |||
+		               \\\    ///  ///  \\\     |||        ///          ///      \\\   ||| \\\  |||
+		                \\\  ///  ///    \\\    |||       |||          |||        |||  |||  \\\ |||
+		                 \\\///  ///||||||\\\   |||        \\\          \\\      ///   |||   \\\|||
+		                  \\//  ///        \\\  ||||||||    \\\___///     \\\|||///    |||    \\|||)" << std::endl;
+
+
 	while (true)
 	{
 		std::string line;
@@ -28,10 +50,10 @@ int main()
 		if (basher(line) == true)
 		{
 			std::string command = line.substr(9);
-			std::cout << "Command: " << command << std::endl;
+			commander_main(command);
 		}
 		else {
-			std::cout << "user access denied " << std::endl;
+			std::cout << "USER ACCESS DENIED" << std::endl;
 		}
 
 
