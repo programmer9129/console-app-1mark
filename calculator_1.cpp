@@ -48,12 +48,12 @@ public:
 					sums_unified = sums_unified + numbers[n]*(10^n);
 				}
 				sums_unification.push_back(sums_unified);
-				numbers.clear();
-				count = 0;
+				operations.push_back(line[i]);
+				numbers.clear();//number got intialised to 0
+				count = 0;//counter is intialized to 0
 			}
-			
-			
 		}
+
 	}
 
 };
