@@ -21,10 +21,13 @@ public:
 		std::vector<int> numbers;
 		std::vector<int>sums_unification;
 		std::vector<char> operations;
-		bool TOKEN = false;int j = 0;
-		int count = 0;int count_mark = 0;
+		bool TOKEN = false;//the TOKEN cheker ticket 
+		
+		int j = 0;int i = 0;//identifiers for the for loops
+
+		int count = 0;//counter for array parsing 
 		line.erase(remove(line.begin(), line.end(), '='), line.end());
-		for (int i = 0;i < line.length();i++)
+		for (i = 0;i < line.length();i++)
 		{
 			for (j = 0;j < 4;j++)
 			{
@@ -42,7 +45,7 @@ public:
 			if (TOKEN == false)
 			{
 				count += 1;
-				int num_standby = int(line[i]) - '0';
+				int num_standby = int(line[i]) - '0';//anscii to int converter
 				numbers.push_back(num_standby);
 			}
 			else
@@ -57,16 +60,29 @@ public:
 				count = 0;//counter is intialized to 0
 			}
 		}
-		for (int x : sums_unification)
+		for (i = 0;i < sums_unification.size();i++)
 		{
 			for (j = 0;j < operations.size();j++)
 			{
 
+				if (operations[j] == '+')
+				{
+					sums = sums_unification[i] + sums_unification[i + 1];
+				}
+				else if (operations[j] == '-')
+				{
+					sums = sums_unification[i] - sums_unification[i + 1];
+				}
+				/*else if (operations[j] == '*')
+				{
+					sums = sums_unification[i] * sums_unification[i + 1];
+				}
+				else if (operations[j] == '/')
+				{
+					sums = sums_unification[i] / sums_unification[i + 1];
+				}*/
 			}
-
 		}
-
-
+		return sums;
 	}
-
 };
