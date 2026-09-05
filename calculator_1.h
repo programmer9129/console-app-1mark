@@ -1,3 +1,5 @@
+#pragma once
+
 #include<iostream>
 #include<string>
 #include<vector>
@@ -14,13 +16,14 @@ public:
 	double sums_unified;
 
 	void parser(string line)
-	{	
+	{
 		std::vector<int> numbers;
 		std::vector<int>sums_unification;
 		std::vector<char> operations;
 		bool TOKEN = false;
 		int count = 0;int count_mark = 0;
-		for(int i=0;i<line.length();i++)
+		line.erase(remove(line.begin(), line.end(), '='), line.end());
+		for (int i = 0;i < line.length();i++)
 		{
 			for (int j = 0;j < 4;j++)
 			{
@@ -40,12 +43,12 @@ public:
 				count = +1;
 				numbers.push_back(line[i]);
 			}
-			else 
-			{ 
+			else
+			{
 				reverse(numbers.begin(), numbers.end());
-				for (int n = numbers.size()-1;n >= 0;n--)
+				for (int n = numbers.size() - 1;n >= 0;n--)
 				{
-					sums_unified = sums_unified + numbers[n]*(10^n);
+					sums_unified = sums_unified + numbers[n] * (10 ^ n);
 				}
 				sums_unification.push_back(sums_unified);
 				operations.push_back(line[i]);
@@ -53,6 +56,7 @@ public:
 				count = 0;//counter is intialized to 0
 			}
 		}
+
 
 	}
 
