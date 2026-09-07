@@ -10,80 +10,72 @@ using namespace std;
 class Calculator
 {
 private:
-	char operation[4] = { '+', '-', '*', '/' };
+//	char operation[4] = { '+', '-', '*', '/' };
+	//char numbers[10] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 public:
-	long long nums = 0.0;
-	long long sums = 0.0;
-	long long sums_unified = 0.0;
+	long long sums = 0;
+	long long sums_unified = 0;
+	char operation[4] = { '+', '-', '*', '/' };
 
+	
 	long long parser(string line)
 	{
 		std::vector<int> numbers;
 		std::vector<int>sums_unification;
 		std::vector<char> operations;
-		bool TOKEN = false;//the TOKEN cheker ticket 
-		
-		int j = 0;int i = 0;//identifiers for the for loops
+		bool TOKEN = false;bool di_token = false;//the TOKEN cheker ticket 
 
+		int j = 0;int i = 0;//identifiers for the for loops
+		line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
 		int count = 0;//counter for array parsing 
-		line.erase(remove(line.begin(), line.end(), '='), line.end());
-		for (i = 0;i < line.length();i++)
+		for (i = 0; i < line.length();i++)
 		{
-			for (j = 0;j < 4;j++)
+			for(j=0;j<4;j++)
 			{
 				if (line[i] == operation[j])
 				{
-					// Handle the operation
-					bool TOKEN = true;
-					operations.push_back(line[i]);
+					operations.push_back(operation[j]);
+					TOKEN = true;
+				}
+				else if (line[i] == '=')
+				{
+					di_token = true;  //super token for answer analyzation process trigerring 
 				}
 				else
 				{
-					bool TOKEN = false;
+					int partial_number = 0;
+					partial_number = static_cast<int>(line[i]) - '0';  //str to int convertor
+					numbers.push_back(partial_number);
+					TOKEN = false;di_token = false;   //token fillation 
 				}
 			}
-			if (TOKEN == false)
+			if (TOKEN == true || di_token == true)
 			{
-				count += 1;
-				int num_standby = int(line[i]) - '0';//anscii to int converter
-				numbers.push_back(num_standby);
-			}
-			else
-			{
-				reverse(numbers.begin(), numbers.end());
-				for (int n = numbers.size() - 1;n >= 0;n--)
+				std::reverse(numbers.begin(), numbers.end());
+				for (int k = 0;k < numbers.size();k++)
 				{
-					sums_unified = sums_unified + (numbers[n] * pow(10,n));
+					sums += numbers[k] * std::pow(10, k);
 				}
-				sums_unification.push_back(sums_unified);
-				numbers.clear();//number got intialised to 0
-				count = 0;//counter is intialized to 0
+				sums_unification.push_back(sums);
+				numbers.clear();
+				TOKEN = false;di_token = false;
+				if (i != line.length() - 1)
+				{
+					std::cout << "Error: '=' must be at the end of the expression" << std::endl;  //state the error for right input
+					break;
+				}
+				else if (i == line.length() - 1)
+				{
+					break; // exit the loop if '=' is at the end of the expression
+				}
+			
 			}
 		}
-		for (i = 0;i < sums_unification.size();i++)
+		sums_unified = sums_unification[0];
+		for (int k = 0;k < operations.size();k++)
 		{
-			for (j = 0;j < operations.size();j++)
-			{
-
-				if (operations[j] == '+')
-				{
-					sums = sums_unification[i] + sums_unification[i + 1];
-				}
-				else if (operations[j] == '-')
-				{
-					sums = sums_unification[i] - sums_unification[i + 1];
-				}
-				/*else if (operations[j] == '*')
-				{
-					sums = sums_unification[i] * sums_unification[i + 1];
-				}
-				else if (operations[j] == '/')
-				{
-					sums = sums_unification[i] / sums_unification[i + 1];
-				}*/
-			}
 
 		}
-		return sums;
 	}
+
 };
