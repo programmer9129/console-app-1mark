@@ -12,11 +12,11 @@ class Calculator
 private:
 	char operation[4] = { '+', '-', '*', '/' };
 public:
-	double nums;
-	double sums;
-	double sums_unified;
+	long long nums = 0.0;
+	long long sums = 0.0;
+	long long sums_unified = 0.0;
 
-	void parser(string line)
+	long long parser(string line)
 	{
 		std::vector<int> numbers;
 		std::vector<int>sums_unification;
@@ -82,6 +82,7 @@ public:
 					sums = sums_unification[i] / sums_unification[i + 1];
 				}*/
 			}
+
 		}
 		return sums;
 	}

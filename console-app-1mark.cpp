@@ -34,10 +34,10 @@ int commander_main(string f)
 	else if (f == "calc")
 	{
 		std::cout << "enter your equation in the following format : 1+2=" << std::endl;
-		std::string line;
-		std::getline(std::cin, line);
+		std::string line2;
+		std::getline(std::cin, line2);
 		Calculator calc;
-		calc.parser(line);
+		calc.parser(line2);
 		std::cout << "the answer is : " << calc.sums << std::endl;
 	}
 	else

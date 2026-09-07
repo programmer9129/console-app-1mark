@@ -18,8 +18,10 @@
     <ClCompile Include="console-app-1mark.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calculator_1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="calculator_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
