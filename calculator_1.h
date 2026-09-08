@@ -58,7 +58,7 @@ public:
 				}
 				sums_unification.push_back(sums);
 				numbers.clear();
-				TOKEN = false;di_token = false;
+				TOKEN = false;di_token = false;//token must be cleared off!
 				if (i != line.length() - 1)
 				{
 					std::cout << "Error: '=' must be at the end of the expression" << std::endl;  //state the error for right input
@@ -74,7 +74,10 @@ public:
 		sums_unified = sums_unification[0];
 		for (int k = 0;k < operations.size();k++)
 		{
-
+			if (operations[k] == '+')
+			{
+				sums_unified = sums_unified + sums_unifi 
+			}
 		}
 	}
 
