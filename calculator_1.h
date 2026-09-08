@@ -15,7 +15,7 @@ private:
 public:
 	long long sums = 0;
 	long long sums_unified = 0;
-	char operation[4] = { '+', '-', '*', '/' };
+	char operation[5] = { '+', '-', '*', '/', '=' };
 
 	
 	long long parser(string line)
@@ -24,29 +24,31 @@ public:
 		std::vector<int>sums_unification;
 		std::vector<char> operations;
 		bool TOKEN = false;bool di_token = false;//the TOKEN cheker ticket 
-
 		int j = 0;int i = 0;//identifiers for the for loops
+
 		line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+		
 		int count = 0;//counter for array parsing 
 		for (i = 0; i < line.length();i++)
 		{
-			for(j=0;j<4;j++)
+			if (line[i] == '=' && i != line.length() - 1)
+			{
+				std::cout << "ERROR! DON'T PUT '=' IN THE MIDDLE OF AN EQUATION " << std::endl;
+			}
+			
+			for(j=0;j<5 ;j++)
 			{
 				if (line[i] == operation[j])
 				{
 					operations.push_back(operation[j]);
 					TOKEN = true;
 				}
-				else if (line[i] == '=')
-				{
-					di_token = true;  //super token for answer analyzation process trigerring 
-				}
 				else
 				{
 					int partial_number = 0;
 					partial_number = static_cast<int>(line[i]) - '0';  //str to int convertor
 					numbers.push_back(partial_number);
-					TOKEN = false;di_token = false;   //token fillation 
+					TOKEN = false;   //token fillation 
 				}
 			}
 			if (TOKEN == true || di_token == true)
@@ -57,17 +59,10 @@ public:
 					sums += numbers[k] * std::pow(10, k);
 				}
 				sums_unification.push_back(sums);
+				sums = 0;
+				//token must be cleared off
 				numbers.clear();
-				TOKEN = false;di_token = false;//token must be cleared off!
-				if (i != line.length() - 1)
-				{
-					std::cout << "Error: '=' must be at the end of the expression" << std::endl;  //state the error for right input
-					break;
-				}
-				else if (i == line.length() - 1)
-				{
-					break; // exit the loop if '=' is at the end of the expression
-				}
+				TOKEN = false;
 			
 			}
 		}
@@ -76,9 +71,17 @@ public:
 		{
 			if (operations[k] == '+')
 			{
-				sums_unified = sums_unified + sums_unifi 
+				sums_unified = sums_unified + sums_unification[count + 1];
+				count++;
 			}
+			else if (operations[k] == '-')
+			{
+				sums_unified = sums_unified - sums_unification[count + 1];
+				count++;
+			}
+
 		}
+		return sums_unified;
 	}
 
 };

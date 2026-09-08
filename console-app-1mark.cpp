@@ -37,8 +37,9 @@ int commander_main(string f)
 		std::string line2;
 		std::getline(std::cin, line2);
 		Calculator calc;
-		calc.parser(line2);
-		std::cout << "the answer is : " << calc.sums << std::endl;
+		int result = calc.parser(line2);
+		std::cout << "the answer is : " << result << std::endl;
+		result = 0;
 	}
 	else
 	{
